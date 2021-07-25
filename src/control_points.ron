@@ -1,0 +1,5 @@
+ControlPoints (
+    pt0: Point(x: 0.40, y: 0.85),
+    pt1: Point(x: 0.37, y: 0.25),
+    pt2: Point(x: 0.53, y: 0.11)
+)
