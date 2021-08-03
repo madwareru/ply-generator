@@ -156,8 +156,9 @@ dependencies = [
 
 [[package]]
 name = "simple-tiled-wfc"
-version = "0.7.1"
-source = "git+https://github.com/madwareru/simple-tiled-wfc.git#59f717215379377f7494bcce627855712b6241cc"
+version = "0.7.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "31c73b1c73394f37c19ecd8516e6362595a9c6a70c80ed3db87d948db8afb6dc"
 dependencies = [
  "bitsetium",
  "rand",
