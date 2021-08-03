@@ -6,7 +6,7 @@ use {
         negate_z_coord,
         flip_normals
     },
-    simple_tiled_wfc::grid_generation::{WfcModule, WfcContext},
+    simple_tiled_wfc::grid_generation::{WfcModule, WfcContext, WfcContextBuilder},
     ron::de::from_reader,
     crate::{
         types::{ControlPoints},
@@ -18,7 +18,8 @@ use {
             is_east_neighbour
         }
     },
-    bitsetium::Bits128
+    bitsetium::Bits128,
+    std::sync::mpsc::channel
 };
 
 mod wang_info;
@@ -190,13 +191,17 @@ fn wfc_experiment(points: &ControlPoints) {
     let w = 36;
     let h = 36;
 
-    let mut wfc_context: WfcContext<Bits128> = WfcContext::new(&modules, w, h);
+    let (tx, rc) = channel();
+
+    let mut wfc_context: WfcContext<Bits128> = WfcContextBuilder::new(&modules, w, h).build();
     wfc_context.set_module(0, 0, 0);
     wfc_context.set_module(0, 35, 0);
     wfc_context.set_module(35, 0, 0);
     wfc_context.set_module(35, 35, 0);
     wfc_context.set_module(17, 17, modules.len()-1);
-    let wfc_result = wfc_context.collapse(100);
+    wfc_context.collapse(100, tx.clone());
+
+    let wfc_result = rc.recv().unwrap();
 
     match wfc_result {
         Ok(results) => {

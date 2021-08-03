@@ -156,8 +156,8 @@ dependencies = [
 
 [[package]]
 name = "simple-tiled-wfc"
-version = "0.1.0"
-source = "git+https://github.com/madwareru/simple-tiled-wfc.git#50e3355d5473f07202aa371d2e2f8ea538bdb77a"
+version = "0.7.1"
+source = "git+https://github.com/madwareru/simple-tiled-wfc.git#59f717215379377f7494bcce627855712b6241cc"
 dependencies = [
  "bitsetium",
  "rand",
